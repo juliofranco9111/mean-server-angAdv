@@ -143,6 +143,7 @@ const borrarUsuario = async( req, res = response ) => {
 
         await Usuario.findByIdAndDelete(uid);
 
+
         res.json({
             ok:true,
             msg: 'Usuario eliminado'

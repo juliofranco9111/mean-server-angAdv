@@ -17,7 +17,7 @@ const borrarImagen = ( path ) => {
 
 const actualizarImagen = async ( tipo, id, nombreArchivo ) => {
 
-    console.log('Vamos bien');
+    // console.log('Vamos bien');
     let pathViejo = '';
     
     switch (tipo) {
