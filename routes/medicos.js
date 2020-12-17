@@ -5,10 +5,13 @@ Path: '/api/medicos'
 const { Router } = require('express');
 const { check } = require('express-validator');
 
-const { getMedicos,
+const {
+    getMedicos,
     crearMedico,
     actualizarMedico,
-    borrarMedico } = require('../controllers/medicos');
+    borrarMedico,
+    getMedico
+} = require('../controllers/medicos');
 
 const { validarCampos } = require('../middlewares/validar-campos');
 
@@ -25,22 +28,26 @@ router.get('/', getMedicos);
 router.post('/',
     [
         validarJWT,
-        check('nombre', 'El nombre del médico es obligatorio').not().isEmpty(),        
-        check('hospital', 'El id del hospital debe ser válido').isMongoId(),        
+        check('nombre', 'El nombre del médico es obligatorio').not().isEmpty(),
+        check('hospital', 'El id del hospital debe ser válido').isMongoId(),
         validarCampos
     ],
     crearMedico);
 
 router.put('/:id', [
-        validarJWT,
-        check('nombre', 'El nombre del médico es obligatorio').not().isEmpty(),        
-        check('hospital', 'El id del hospital debe ser válido').isMongoId(),        
-        validarCampos
+    validarJWT,
+    check('nombre', 'El nombre del médico es obligatorio').not().isEmpty(),
+    check('hospital', 'El id del hospital debe ser válido').isMongoId(),
+    validarCampos
 ], actualizarMedico);
 
-router.delete('/:id',[
+router.delete('/:id', [
     validarJWT
 ], borrarMedico);
+
+router.get('/:id', [
+    validarJWT
+], getMedico);
 
 
 
