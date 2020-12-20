@@ -94,7 +94,9 @@ const actualizarMedico = async (req, res = response) => {
         }
 
         const medicoActualizado = await Medico.findByIdAndUpdate(
-            idMedico, cambiosMedico, { new: true }
+            idMedico, cambiosMedico, { 
+                new: true,
+            useFindAndModify: false }
         );
 
 

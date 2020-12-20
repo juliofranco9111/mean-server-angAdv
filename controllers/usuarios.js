@@ -111,7 +111,10 @@ const actualizarUsuario = async( req, res = response ) => {
 
         campos.email = email;
         
-        const usuarioActualizado = await Usuario.findByIdAndUpdate( uid, campos, {new:true} );
+        const usuarioActualizado = await Usuario.findByIdAndUpdate( uid, campos, {
+            new:true,
+            useFindAndModify: false
+        } );
 
         res.json({
             ok:true,
